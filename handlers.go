@@ -14,6 +14,6 @@ func HandlerMainMenu(writer http.ResponseWriter, request *http.Request) {
 }
 
 func HandlerApi(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "<h1>Hola Mundo desde API</h1>")
+	fmt.Fprintf(writer, "<h1>Hola Mundo desde API Endpoint</h1>")
 }
 
