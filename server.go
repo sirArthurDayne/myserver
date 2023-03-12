@@ -9,6 +9,7 @@ type Server struct {
 	router *Router
 }
 
+//generar un servidor mediante puerto y router
 func NewServer(port string) *Server {
 	return &Server{
 		port:   port,
@@ -16,6 +17,12 @@ func NewServer(port string) *Server {
 	}
 }
 
+//combinar ruta con Handler
+func (s *Server) Handle(path string, handler http.HandlerFunc) {
+    s.router.rules[path] = handler
+}
+
+//escuchar las peticiones
 func (s *Server) Listen() error {
     http.Handle("/", s.router)
 	error := http.ListenAndServe(s.port, nil)
@@ -24,3 +31,4 @@ func (s *Server) Listen() error {
 	}
 	return nil
 }
+
