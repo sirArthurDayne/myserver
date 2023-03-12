@@ -1,4 +1,4 @@
 #!/bin/sh
 
-go fmt *
+go fmt *.go
 go run *.go

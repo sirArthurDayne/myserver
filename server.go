@@ -19,16 +19,15 @@ func NewServer(port string) *Server {
 
 //combinar ruta con Handler
 func (s *Server) Handle(path string, handler http.HandlerFunc) {
-    s.router.rules[path] = handler
+	s.router.rules[path] = handler
 }
 
 //escuchar las peticiones
 func (s *Server) Listen() error {
-    http.Handle("/", s.router)
+	http.Handle("/", s.router)
 	error := http.ListenAndServe(s.port, nil)
 	if error != nil {
 		return error
 	}
 	return nil
 }
-

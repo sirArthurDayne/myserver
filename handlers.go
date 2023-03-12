@@ -1,8 +1,8 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
+	"fmt"
+	"net/http"
 )
 
 func HandlerRoot(writer http.ResponseWriter, request *http.Request) {
@@ -16,4 +16,3 @@ func HandlerMainMenu(writer http.ResponseWriter, request *http.Request) {
 func HandlerApi(writer http.ResponseWriter, request *http.Request) {
 	fmt.Fprintf(writer, "<h1>Hola Mundo desde API Endpoint</h1>")
 }
-
