@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -25,4 +26,19 @@ func HandlerNotLogin(writer http.ResponseWriter, request *http.Request) {
 
 func HandlerMethodNotAllowed(writer http.ResponseWriter, request *http.Request) {
 	fmt.Fprintf(writer, "<h1>Hola, la ruta es correcta pero la peticion no es compatible</h1>")
+}
+func HandlerPostRequest(writer http.ResponseWriter, request *http.Request) {
+	decoder := json.NewDecoder(request.Body)
+	var user User
+	err := decoder.Decode(&user)
+	if err != nil {
+		fmt.Fprintf(writer, "[ERROR]: %v", err)
+	}
+	response, parseErr := user.ToJson()
+	if parseErr != nil {
+		writer.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	writer.Header().Set("Content-Type", "application/json")
+	writer.Write(response)
 }

@@ -5,6 +5,7 @@ func main() {
 
 	server.Handle(GET, "/", HandlerRoot)
 	server.Handle(GET, "/menu", HandlerMainMenu)
+	server.Handle(POST, "/create", HandlerPostRequest)
 	server.Handle(GET, "/api", server.AddMiddleware(HandlerApi, CheckAuth(), Login()))
 	server.Listen()
 }
