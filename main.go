@@ -3,8 +3,8 @@ package main
 func main() {
 	server := NewServer(":3000")
 
-	server.Handle("/", HandlerRoot)
-	server.Handle("/menu", HandlerMainMenu)
-	server.Handle("/api", server.AddMiddleware(HandlerApi, CheckAuth()))
+	server.Handle(GET, "/", HandlerRoot)
+	server.Handle(GET, "/menu", HandlerMainMenu)
+	server.Handle(GET, "/api", server.AddMiddleware(HandlerApi, CheckAuth(), Login()))
 	server.Listen()
 }

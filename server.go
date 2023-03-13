@@ -18,8 +18,12 @@ func NewServer(port string) *Server {
 }
 
 //combinar ruta con Handler
-func (s *Server) Handle(path string, handler http.HandlerFunc) {
-	s.router.rules[path] = handler
+func (s *Server) Handle(method string, path string, handler http.HandlerFunc) {
+	_, pathExist := s.router.rules[path]
+	if !pathExist {
+		s.router.rules[path] = make(map[string]http.HandlerFunc)
+	}
+	s.router.rules[path][method] = handler
 }
 
 //Agregar middleware para pasarselos al handler correspondiente
