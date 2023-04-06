@@ -1,4 +1,5 @@
 #!/bin/sh
 
-go fmt *.go
-go run *.go
+go fmt myserver/*.go
+go fmt main/*.go
+go run main/main.go
